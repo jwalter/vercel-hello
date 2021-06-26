@@ -1,5 +1,5 @@
 
-name: "Get Streamers"
+name: "Update index.html"
 on:
   workflow_dispatch    
 jobs:
