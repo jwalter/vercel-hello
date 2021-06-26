@@ -1,0 +1,23 @@
+
+name: "Get Streamers"
+on:
+  workflow_dispatch    
+jobs:
+  update-index-html:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Use Node.js 14
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+      - name: Run script
+        run: node ./script.js
+      - name: Commit changes
+        run: |
+          something_changed=`git diff-index --exit-code --ignore-submodules HEAD`
+          if [ -n "$something_changed" ]
+          then
+            echo >&2 "Something changed in $local_ref, not pushing"
+          fi
